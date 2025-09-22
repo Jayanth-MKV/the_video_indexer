@@ -76,7 +76,7 @@ ORIENTATION_TRANSFORMS = {
     5: (_flip_lr, _rot_90),   # mirror horizontal + rotate 90 CCW
     6: (_rot_270,),           # rotate 90 CW
     7: (_flip_lr, _rot_270),  # mirror horizontal + rotate 90 CW
-    8: (_rot_90,),            # rotate 270 CW (i.e. 90 CCW) -> wait: spec says 270 CW => 90 CCW
+    8: (_rot_90,),            # rotate 270 CW (i.e. 90 CCW)
 }
 
 

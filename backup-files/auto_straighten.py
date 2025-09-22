@@ -157,6 +157,15 @@ def detect_vertical_lines(img: np.ndarray, debug: bool = False) -> Optional[floa
     
     # Filter for vertical-ish lines (wider range)
     vertical_angles = []
+    def calculate_rotation_from_vertical(theta: float) -> float:
+        """Calculate rotation needed to make a line vertical given its theta."""
+        rotation_needed = math.degrees(theta) - 90
+        if rotation_needed > 45:
+            rotation_needed -= 90
+        elif rotation_needed < -45:
+            rotation_needed += 90
+        return rotation_needed
+
     for rho, theta in lines[:, 0]:
         # Convert theta to angle from vertical (0 = perfectly vertical)
         angle_from_vertical = abs(math.degrees(theta) - 90)
@@ -165,11 +174,7 @@ def detect_vertical_lines(img: np.ndarray, debug: bool = False) -> Optional[floa
             
         if angle_from_vertical < 45:  # Within 45 degrees of vertical (wider range)
             # Calculate rotation needed to make this line vertical
-            rotation_needed = math.degrees(theta) - 90
-            if rotation_needed > 45:
-                rotation_needed -= 90
-            elif rotation_needed < -45:
-                rotation_needed += 90
+            rotation_needed = calculate_rotation_from_vertical(theta)
             vertical_angles.append(rotation_needed)
     
     if not vertical_angles:

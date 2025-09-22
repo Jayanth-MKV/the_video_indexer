@@ -64,7 +64,7 @@ def _read_img_and_correct_exif_orientation(path: Path) -> Image.Image:
             logging.debug("Applying: rotate 180")
             im = im.transpose(Image.ROTATE_180)
         if 4 in val:
-            logging.debug("Applying: mirror horizontal (NOTE: snippet used FLIP_TOP_BOTTOM; using FLIP_LEFT_RIGHT)")
+            logging.debug("Applying: mirror horizontal")
             im = im.transpose(Image.FLIP_LEFT_RIGHT)
         if 6 in val:
             logging.debug("Applying: rotate 270 (i.e., 90 CW)")
